@@ -1,8 +1,8 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class CartPage extends BasePage {
 
@@ -13,11 +13,13 @@ public class CartPage extends BasePage {
         super(driver);
     }
 
+    @Step("Получить название товара в корзине")
     public String getItemName() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(itemName)).getText().trim();
+        return el(itemName).getText().trim();
     }
 
+    @Step("Нажать Checkout")
     public void clickCheckout() {
-        wait.until(ExpectedConditions.elementToBeClickable(checkoutButton)).click();
+        click(checkoutButton);
     }
 }

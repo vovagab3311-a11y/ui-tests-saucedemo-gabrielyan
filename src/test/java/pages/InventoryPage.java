@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,22 +18,27 @@ public class InventoryPage extends BasePage {
         super(driver);
     }
 
+    @Step("Получить заголовок страницы")
     public String getPageTitle() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(pageTitle)).getText().trim();
+        return el(pageTitle).getText().trim();
     }
 
+    @Step("Получить счётчик корзины")
     public String getCartBadge() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(cartBadge)).getText().trim();
+        return el(cartBadge).getText().trim();
     }
 
+    @Step("Добавить Sauce Labs Backpack в корзину")
     public void addBackpackToCart() {
-        wait.until(ExpectedConditions.elementToBeClickable(addBackpackButton)).click();
+        click(addBackpackButton);
     }
 
+    @Step("Перейти в корзину")
     public void goToCart() {
-        wait.until(ExpectedConditions.elementToBeClickable(cartLink)).click();
+        click(cartLink);
     }
 
+    @Step("Выбрать сортировку: {value}")
     public void selectSort(String value) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(sortDropdown));
         new Select(driver.findElement(sortDropdown)).selectByValue(value);

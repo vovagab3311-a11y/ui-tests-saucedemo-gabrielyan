@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,20 +18,22 @@ public class CheckoutPage extends BasePage {
         super(driver);
     }
 
+    @Step("Заполнить форму: {first} {last}, {zip}")
     public void fillForm(String first, String last, String zip) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(firstName)).sendKeys(first);
-        driver.findElement(lastName).sendKeys(last);
-        driver.findElement(postalCode).sendKeys(zip);
-        wait.until(ExpectedConditions.elementToBeClickable(continueButton)).click();
-        // Ждём, пока загрузится страница Overview и появится кнопка Finish
+        type(firstName, first);
+        type(lastName, last);
+        type(postalCode, zip);
+        click(continueButton);
         wait.until(ExpectedConditions.elementToBeClickable(finishButton));
     }
 
+    @Step("Нажать Finish")
     public void finish() {
-        wait.until(ExpectedConditions.elementToBeClickable(finishButton)).click();
+        click(finishButton);
     }
 
+    @Step("Получить заголовок завершения заказа")
     public String getCompleteHeader() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(completeHeader)).getText().trim();
+        return el(completeHeader).getText().trim();
     }
 }

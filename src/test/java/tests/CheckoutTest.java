@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.CartPage;
@@ -7,9 +8,14 @@ import pages.CheckoutPage;
 import pages.InventoryPage;
 import pages.LoginPage;
 
+@Epic("UI Saucedemo")
+@Feature("Checkout")
+@Owner("Gabrielyan Vladimir")
 public class CheckoutTest extends BaseTest {
 
     @Test(description = "Оформление заказа")
+    @Story("Complete order")
+    @Severity(SeverityLevel.BLOCKER)
     public void completeCheckout() {
         new LoginPage(driver).openPage()
                 .enterUsername("standard_user")

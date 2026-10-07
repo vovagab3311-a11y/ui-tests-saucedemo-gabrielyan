@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -10,9 +11,14 @@ import pages.LoginPage;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Epic("UI Saucedemo")
+@Feature("Sorting")
+@Owner("Gabrielyan Vladimir")
 public class SortTest extends BaseTest {
 
     @Test(description = "Сортировка A → Z")
+    @Story("Sort A→Z")
+    @Severity(SeverityLevel.NORMAL)
     public void sortByNameAToZ() {
         new LoginPage(driver).openPage()
                 .enterUsername("standard_user")

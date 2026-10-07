@@ -1,12 +1,18 @@
 package tests;
 
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 
+@Epic("UI Saucedemo")
+@Feature("Login")
+@Owner("Gabrielyan Vladimir")
 public class LoginTest extends BaseTest {
 
     @Test(description = "Позитивный вход standard_user")
+    @Story("Positive login")
+    @Severity(SeverityLevel.CRITICAL)
     public void positiveLogin() {
         new LoginPage(driver).openPage()
                 .enterUsername("standard_user")
@@ -18,6 +24,8 @@ public class LoginTest extends BaseTest {
     }
 
     @Test(description = "Негативный вход locked_out_user")
+    @Story("Negative login")
+    @Severity(SeverityLevel.NORMAL)
     public void negativeLoginLockedUser() {
         LoginPage page = new LoginPage(driver).openPage()
                 .enterUsername("locked_out_user")
